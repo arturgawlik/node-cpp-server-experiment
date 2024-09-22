@@ -1,0 +1,10 @@
+{
+  "type": "module",
+  "gypfile": true,
+  "devDependencies": {
+    "@types/node": "^22.5.5"
+  },
+  "dependencies": {
+    "node-addon-api": "^8.1.0"
+  }
+}
