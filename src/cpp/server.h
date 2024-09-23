@@ -9,6 +9,11 @@ public:
     static Napi::Function GetClass(Napi::Env);
 
 private:
-    std::int32_t _port;
     Napi::FunctionReference _cb;
+};
+
+struct uv_cb_data
+{
+    Napi::FunctionReference *cb;
+    uv_loop_s *event_loop;
 };

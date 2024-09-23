@@ -9,7 +9,7 @@ class Server {
   }
 
   listen(port) {
-    this.#nativeServer.listen();
+    this.#nativeServer.listen(8080);
   }
 
   #importNativeServer() {
