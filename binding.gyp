@@ -1,7 +1,7 @@
 {
     'targets': [{
-        'target_name': 'server',
-        'sources': ['src/cpp/server.cc'],
+        'target_name': 'tcp-server',
+        'sources': ['src/cpp/tcp-server.cc'],
         'include_dirs': ["<!@(node -p \"require('node-addon-api').include\")"],
         'dependencies': ["<!(node -p \"require('node-addon-api').gyp\")"],
         'xcode_settings': {

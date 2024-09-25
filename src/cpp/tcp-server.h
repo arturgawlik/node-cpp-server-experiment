@@ -1,19 +1,22 @@
 #include <napi.h>
 
-class Server : public Napi::ObjectWrap<Server>
+class TcpServer : public Napi::ObjectWrap<TcpServer>
 {
 public:
-    Server(const Napi::CallbackInfo &);
+    TcpServer(const Napi::CallbackInfo &);
     void Listen(const Napi::CallbackInfo &);
 
     static Napi::Function GetClass(Napi::Env);
 
 private:
     Napi::FunctionReference _cb;
+    Napi::FunctionReference _errorCb;
+    uv_loop_t *_loop;
 };
 
 struct uv_cb_data
 {
     Napi::FunctionReference *cb;
+    Napi::FunctionReference *errorCb;
     uv_loop_s *event_loop;
 };
