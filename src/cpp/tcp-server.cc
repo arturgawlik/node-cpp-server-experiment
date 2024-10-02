@@ -39,11 +39,10 @@ void emit_uv_error(Napi::FunctionReference *callback, int result)
 
 void on_close(uv_handle_t *handle)
 {
-    ŪŪŪŪŪ
     std::cout << "on_close called";
 }
 
-void on_new_connection(uv_stream_t *servŪer, int status)
+void on_new_connection(uv_stream_t *server, int status)
 {
     uv_cb_data *serverData = (uv_cb_data *)server->data;
     Napi::FunctionReference *jsCallback = serverData->cb;
