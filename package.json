@@ -2,7 +2,7 @@
   "type": "module",
   "gypfile": true,
   "scripts": {
-    "start": "node index.js",
+    "start": "node ./src/js/tcp-server.js",
     "build:dev": "node-gyp build --debug",
     "build": "node-gyp build",
     "rebuild:dev": "node-gyp rebuild --debug",
