@@ -19,6 +19,7 @@ class TcpServer {
     return TcpServer;
   }
 }
+
 try {
   setTimeout(() => {
     const tcpServer = new TcpServer(

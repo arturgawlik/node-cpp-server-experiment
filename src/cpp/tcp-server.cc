@@ -78,10 +78,10 @@ void TcpServer::Listen(const Napi::CallbackInfo &info)
     Napi::Number port = info[0].As<Napi::Number>();
 
     int result = 0;
-    uv_tcp_t server;
+    this->_server = new uv_tcp_t();
 
     std::cout << "before uv_tcp_init\n";
-    result = uv_tcp_init(loop, &server);
+    result = uv_tcp_init(loop, this->_server);
     if (result != 0)
     {
         emit_uv_error(&this->_errorCb, result);
@@ -100,7 +100,7 @@ void TcpServer::Listen(const Napi::CallbackInfo &info)
     std::cout << "after uv_ip4_addr\n";
 
     std::cout << "before uv_tcp_bind\n";
-    result = uv_tcp_bind(&server, (const struct sockaddr *)&address, 0);
+    result = uv_tcp_bind(this->_server, (const struct sockaddr *)&address, 0);
     if (result != 0)
     {
         emit_uv_error(&this->_errorCb, result);
@@ -112,11 +112,11 @@ void TcpServer::Listen(const Napi::CallbackInfo &info)
     data->cb = &this->_cb;
     data->errorCb = &this->_errorCb;
     data->event_loop = loop;
-    server.data = data;
+    this->_server->data = data;
 
     int backlog = 511; // maxiumum length of queued connections
     std::cout << "before uv_listen\n";
-    result = uv_listen((uv_stream_t *)&server, backlog, on_new_connection);
+    result = uv_listen((uv_stream_t *)this->_server, backlog, on_new_connection);
     if (result != 0)
     {
         emit_uv_error(&this->_errorCb, result);

@@ -12,6 +12,7 @@ private:
     Napi::FunctionReference _cb;
     Napi::FunctionReference _errorCb;
     uv_loop_t *_loop;
+    uv_tcp_t *_server;
 };
 
 struct uv_cb_data
